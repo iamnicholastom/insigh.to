@@ -57,7 +57,7 @@ export default function Home() {
             </div>
             <ul className="space-y-2">
               {benefits.map((benefit) => (
-                <li className="flex gap-2 items-center">
+                <li className="flex gap-2 items-center" key={benefit}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
