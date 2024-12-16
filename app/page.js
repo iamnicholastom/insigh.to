@@ -1,4 +1,5 @@
 import ButtonLogin from "@/components/ButtonLogin";
+import FAQListItem from "@/components/FAQListItem";
 
 export default function Home() {
   const isLoggedIn = true;
@@ -18,8 +19,12 @@ export default function Home() {
         <div className="flex justify-between items-center px-8 py-2 max-w-3xl mx-auto">
           <div className="font-bold">Insighto</div>
           <div className="space-x-4 max-md:hidden">
-            <a className="link link-hover">Pricing</a>
-            <a className="link link-hover">FAQ</a>
+            <a className="link link-hover" href="#pricing">
+              Pricing
+            </a>
+            <a className="link link-hover" href="#faq">
+              FAQ
+            </a>
           </div>
           <div>
             <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
@@ -40,7 +45,7 @@ export default function Home() {
         </div>
       </section>
       {/* PRICING */}
-      <section className="bg-base-200">
+      <section className="bg-base-200" id="pricing">
         <div className="px-8 py-32 max-w-3xl mx-auto">
           <p className="text-sm uppercase font-medium text-center text-primary mb-4">
             Pricing
@@ -82,6 +87,35 @@ export default function Home() {
               customStyle="w-full"
             />
           </div>
+        </div>
+      </section>
+      {/* FAQ */}
+      <section className="bg-base-200" id="faq">
+        <div className="px-8 py-32 max-w-3xl mx-auto">
+          <p className="text-sm uppercase font-medium text-center text-primary mb-4">
+            FAQ
+          </p>
+          <h2 className="text-3xl font-extrabold mb-12 lg:text-4xl text-center">
+            Frequently Asked Questions
+          </h2>
+          <ul className="max-w-lg mx-auto">
+            {[
+              {
+                question: "What do I get exactly?",
+                answer: "lorem ipsum",
+              },
+              {
+                question: "Can I get a refund?",
+                answer: "lorem ipsum",
+              },
+              {
+                question: "I have another question",
+                answer: "lorem ipsum",
+              },
+            ].map((qa) => (
+              <FAQListItem key={qa.question} qa={qa} />
+            ))}
+          </ul>
         </div>
       </section>
     </main>
