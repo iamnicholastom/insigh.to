@@ -1,5 +1,7 @@
 import ButtonLogin from "@/components/ButtonLogin";
 import FAQListItem from "@/components/FAQListItem";
+import Image from "next/image";
+import productDemo from "@/app/productDemo.jpeg";
 
 export default function Home() {
   const isLoggedIn = true;
@@ -16,7 +18,7 @@ export default function Home() {
     <main>
       {/* HEADER */}
       <section className="bg-base-200">
-        <div className="flex justify-between items-center px-8 py-2 max-w-3xl mx-auto">
+        <div className="flex justify-between items-center px-8 py-2 max-w-5xl mx-auto">
           <div className="font-bold">Insighto</div>
           <div className="space-x-4 max-md:hidden">
             <a className="link link-hover" href="#pricing">
@@ -32,16 +34,23 @@ export default function Home() {
         </div>
       </section>
       {/* HERO */}
-      <section className="text-center px-8 py-32 max-w-3xl mx-auto">
-        <h1 className="text-4xl font-extrabold mb-6 lg:text-5xl">
-          Collect customer feedback to build better products
-        </h1>
-        <div className="opacity-90">
-          Create a feedback board in minutes, prioritize features, and build
-          products your customers will love
-        </div>
+      <section className="text-center lg:text-left px-8 py-32 max-w-5xl mx-auto flex flex-col lg:flex-row gap-14 items-center lg:items-start">
+        <Image
+          src={productDemo}
+          alt="Product demo"
+          className="w-96 rounded-xl"
+        />
         <div>
-          <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+          <h1 className="text-4xl font-extrabold mb-6 lg:text-5xl">
+            Collect customer feedback to build better products
+          </h1>
+          <div className="opacity-90">
+            Create a feedback board in minutes, prioritize features, and build
+            products your customers will love
+          </div>
+          <div>
+            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+          </div>
         </div>
       </section>
       {/* PRICING */}
