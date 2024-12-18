@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const ButtonLogin = ({ isLoggedIn, name, customStyle }) => {
-  if (isLoggedIn)
+const ButtonLogin = ({ session, customStyle }) => {
+  if (session)
     return (
       <Link
         href="/dashboard"
         className={`btn btn-primary ${customStyle ? customStyle : ""}`}
       >
-        Welcome back {name}
+        Welcome back {session.user.name || "friend"}
       </Link>
     );
 

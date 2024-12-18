@@ -2,10 +2,10 @@ import ButtonLogin from "@/components/ButtonLogin";
 import FAQListItem from "@/components/FAQListItem";
 import Image from "next/image";
 import productDemo from "@/app/productDemo.jpeg";
+import { auth } from "@/auth";
 
-export default function Home() {
-  const isLoggedIn = true;
-  const name = "Nicholas";
+export default async function Home() {
+  const session = await auth();
 
   const benefits = [
     "Collect customer feedback",
@@ -29,7 +29,7 @@ export default function Home() {
             </a>
           </div>
           <div>
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function Home() {
             products your customers will love
           </div>
           <div>
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -90,11 +90,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <ButtonLogin
-              isLoggedIn={isLoggedIn}
-              name={name}
-              customStyle="w-full"
-            />
+            <ButtonLogin session={session} customStyle="w-full" />
           </div>
         </div>
       </section>
