@@ -1,6 +1,10 @@
+import ButtonLogout from "@/components/ButtonLogout";
+
 export default function Dashboard() {
   return (
-    <div>Private Dashboard</div>
-  )
+    <main>
+      <h1>Private Dashboard</h1>
+      <ButtonLogout />
+    </main>
+  );
 }
-
