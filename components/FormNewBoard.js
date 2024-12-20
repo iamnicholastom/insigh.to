@@ -17,13 +17,13 @@ const FormNewBoard = () => {
     setIsLoading(true);
 
     try {
-      const { data } = await axios.post("/api/board", { name });
+      const data = await axios.post("/api/board", { name });
       setName("");
       toast.success("Board created successfully");
       router.refresh();
     } catch (e) {
       const errorMessage =
-        error.response.data.error || error.message || "Something went wrong";
+        error.response?.data?.error || error.message || "Something went wrong";
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
