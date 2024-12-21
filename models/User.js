@@ -14,6 +14,16 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  hasAccess: {
+    type: Boolean,
+    default: false,
+  },
+  customerId: {
+    type: String,
+  },
+  planId: {
+    type: String,
+  },
   boards: [
     {
       type: mongoose.Schema.Types.ObjectId,
