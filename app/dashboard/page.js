@@ -5,6 +5,7 @@ import FormNewBoard from "@/components/FormNewBoard";
 import User from "@/models/User";
 import Board from "@/models/Board";
 import connectMongo from "@/utils/mongoose";
+import ButtonCheckout from "@/components/ButtonCheckout";
 
 async function getUser() {
   const session = await auth();
@@ -19,7 +20,8 @@ export default async function Dashboard() {
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
-        <div className="px-5 py-3 flex justify-end max-w-5xl mx-auto">
+        <div className="px-5 py-3 flex justify-between max-w-5xl mx-auto">
+          <ButtonCheckout />
           <ButtonLogout />
         </div>
       </section>
