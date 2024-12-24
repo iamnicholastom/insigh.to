@@ -5,6 +5,7 @@ import connectMongo from "@/utils/mongoose";
 import { Filter } from "bad-words";
 import { auth } from "@/auth";
 import Post from "@/models/Post";
+import User from "@/models/User";
 
 export async function POST(req) {
   try {
@@ -36,6 +37,52 @@ export async function POST(req) {
     });
 
     return NextResponse.json(post);
+  } catch (e) {
+    return NextResponse.json({ error: e.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    const { searchParams } = req.nextUrl;
+    const postId = searchParams.get("postId");
+
+    if (!postId) {
+      return NextResponse.json(
+        { error: "Post ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const session = await auth();
+    await connectMongo();
+
+    const user = await User.findById(session?.user?.id);
+
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "User does not have access" },
+        { status: 403 }
+      );
+    }
+
+    // check if the person deleting the post is the owner of the post
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    if (!user.boards.includes(post.boardId.toString())) {
+      return NextResponse.json(
+        { error: "User does not have access" },
+        { status: 403 }
+      );
+    }
+
+    await Post.deleteOne({ _id: postId });
+
+    return NextResponse.json({ message: "Post deleted" });
   } catch (e) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }
