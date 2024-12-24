@@ -35,7 +35,7 @@ const FormAddPost = ({ id }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-base-100 p-8 rounded-3xl space-y-8"
+      className="bg-base-100 p-8 rounded-3xl space-y-8 w-full md:w-96 shrink-0"
     >
       <p className="font-bold text-lg">Suggest a feature</p>
       <label className="form-control w-full">
